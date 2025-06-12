@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Circle of Fifths</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Bravura font support -->
+  <style>
+    @font-face {
+      font-family: 'Bravura';
+      src: url('fonts/Bravura.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'BravuraText';
+      src: url('fonts/BravuraText.otf') format('opentype');
+    }
+  </style>
+
+  <!-- Tippy.js and Popper.js CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css" />
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body>
+  <!-- Main Circle of Fifths Container -->
+  <div id="circle-container"></div>
+
+  <!-- Key Info (Headlines, Clefs, Chords) -->
+  <div id="keyInfo" class="key-info" style="display: none;">
+    <h2 id="keyHeadline"></h2>
+    <div id="clef-container" style="margin: 10px 0; display: none;"></div>
+    <h4 id="keySubhead" style="margin-bottom: 10px;"></h4>
+    <div id="chordsDisplay" class="chords-display"></div>
+  </div>
+
+
+
+  <!-- Negative Harmony Chord Chart -->
+  <div id="negativeHarmonyChart" style="display:none; margin-top: 2rem;">
+    <h3>Negative Harmony Chord Chart</h3>
+    <div id="toggle-controls" style="margin-bottom: 1rem;">
+      <button id="showAllBtn" class="toggle-button active">Show All Chords</button>
+      <button id="showDiatonicBtn" class="toggle-button">Show Only Diatonic Chords</button>
+    </div>
+    <div id="negativeChordTable"></div>
+  </div>
+
+  <!-- Hidden Piano Template for Tippy.js -->
+ 
+  <!-- Mirror Container: Circle + Pianos -->
+  <div id="mirror-container" style="margin-top: 40px;"></div>
+  
+  <!-- Main Script -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

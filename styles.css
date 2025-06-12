@@ -1,0 +1,475 @@
+/* === General Layout === */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 2rem;
+  font-family: sans-serif;
+  min-height: 100vh;
+}
+
+#circle-container {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+svg {
+  width: 90vw;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+  #circle-container {
+    margin-bottom: 10px;
+  }
+  svg {
+    width: 98vw;
+    max-width: 98vw;
+  }
+}
+
+/* === Wedges === */
+.wedge, .inner-wedge {
+  fill: #5fa8d3;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: pointer;
+  transition: fill 0.3s, filter 0.3s;
+}
+
+.inner-wedge {
+  fill: #9cd3eb;
+}
+
+.wedge:hover, .inner-wedge:hover {
+  filter: brightness(115%);
+}
+
+/* === Labels === */
+text {
+  font-family: 'Bravura', sans-serif;
+  pointer-events: none;
+  fill: #333;
+}
+
+text.major {
+  font-size: 16px;
+}
+
+text.minor {
+  font-size: 12px;
+}
+
+.roman-label-group circle {
+  fill: #ffc94d;
+}
+
+.roman-label-group text {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+/* === Key Info === */
+#keyInfo {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  max-width: 800px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  #keyInfo {
+    padding: 10px 2vw;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100vw;
+    margin: 10px 0 0 0;
+  }
+}
+
+#clef-container {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+#clef-container img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* === Chord Table === */
+.chord-table {
+  margin-top: 15px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+  background: #fff;
+  table-layout: fixed;   /* Keeps columns even and allows shrinking */
+}
+
+.chord-table th,
+.chord-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal; /* allow wrapping if text is too wide */
+}
+
+.chord-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.chord-table tr.highlight-row td {
+  background-color: #d9eaf7 !important;
+  font-weight: bold;
+}
+
+.chord-table tr.highlight-row-light td {
+  background-color: #f0f7fc !important;
+}
+
+.chord-table tr.root-group-start td {
+  border-top: 2px solid #3a3a3a !important;
+}
+
+.chord-table tr.root-group-end td {
+  border-bottom: 2px solid #333 !important;
+}
+
+@media (max-width: 600px) {
+  .top-chord-table tr:nth-child(2) { display: none; }
+}
+
+
+.chord-table tr.section-divider td {
+  background-color: #eaeaea;
+  font-weight: bold;
+  font-style: italic;
+  border-top: 2px solid #444;
+  border-bottom: 2px solid #444;
+}
+
+.clickable-root {
+  cursor: pointer;
+  font-weight: bold;
+  color: #1a4fa4;
+}
+
+.clickable-root:hover {
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+/* === Responsive: Adjust padding and font size on mobile === */
+@media (max-width: 600px) {
+  .chord-table {
+    font-size: 11px;
+  }
+  .chord-table th,
+  .chord-table td {
+    padding: 4px 1px;
+    font-size: 11px;
+  }
+}
+
+
+
+
+/* === Toggle Buttons === */
+.toggle-button {
+  padding: 6px 12px;
+  margin-right: 8px;
+  font-weight: bold;
+  border: 1px solid #aaa;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-button.active {
+  background-color: #1a4fa4;
+  color: white;
+}
+
+/* === Mirror Circle === */
+#mirror-container {
+  margin-top: 40px;
+}
+
+#mirrorSVG {
+  display: block;
+  margin: 0 auto;
+}
+
+.mirror-wedge {
+  fill: #d3d3d3;
+  stroke: #fff;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+.mirror-wedge:hover {
+  fill: #bcbcbc;
+}
+
+.mirror-highlight {
+  fill: #999 !important;
+}
+
+.mirror-label {
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+#mirrorSVG line {
+  stroke: #222;
+  stroke-width: 2;
+}
+
+.mirror-arrow.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+/* === Piano === */
+/* === Piano === */
+.piano-wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 220px;
+  height: auto;
+  min-height: 90px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: none;
+  user-select: none;
+  box-sizing: border-box;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  max-width: 340px; /* Default for popups */
+}
+
+/* Main piano: bigger! (wrap your main-piano in .main-piano or add class directly) */
+.main-piano .piano-wrapper,
+.main-piano-wrapper.piano-wrapper {
+  max-width: 600px;
+  min-width: 320px;
+  min-height: 120px;
+}
+
+/* Piano Row & Key Styles */
+.white-row {
+  display: flex;
+  flex: 1 1 0;
+  min-height: 80px;
+  height: 100%;
+  z-index: 1;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.main-piano .white-row,
+.main-piano-wrapper .white-row {
+  min-height: 120px;
+}
+
+.white-key {
+  flex: 1 1 0;
+  background: #fff;
+  border: 1px solid #333;
+  border-right: none;
+  border-radius: 0 0 4px 4px;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  min-width: 0;
+}
+
+.white-key:last-child {
+  border-right: 1px solid #333;
+}
+
+.black-key {
+  position: absolute;
+  left: 50%;
+  transform: translateX(40%);
+  top: 0;
+  width: 60%;
+  height: 60%;
+  background: #000;
+  border-radius: 0 0 3px 3px;
+  z-index: 3;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.white-key.highlight {
+  background: #90caf9;
+  box-shadow: inset 0 -4px 0 #1976d2;
+}
+
+.black-key.highlight {
+  background: #2296cc;
+  border: 1px solid #222;
+  box-shadow: inset 0 -2px 0 #0288d1;
+}
+
+.note-label {
+  font-size: clamp(11px, 2vw, 15px);
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  color: #000;
+  pointer-events: none;
+  user-select: none;
+  z-index: 9;
+  background: rgba(255,255,255,0.7);
+  border-radius: 3px;
+  line-height: 1.1;
+}
+.piano-wrapper.compact .note-label {
+  font-size: clamp(10px, 2vw, 13px);
+  bottom: 2px;
+  background: rgba(255,255,255,0.9);
+}
+.piano-wrapper.compact .black-label {
+  color: #fff;
+  background: rgba(0,0,0,0.85);
+  text-shadow: 0 0 2px #000, 0 0 4px #000;
+}
+
+.black-label {
+  color: #fff;
+  text-shadow: 0 0 2px #000, 0 0 4px #000;
+}
+
+/* --- Mobile: responsive, scroll if needed --- */
+@media (max-width: 700px) {
+  .piano-wrapper,
+  .main-piano .piano-wrapper,
+  .main-piano-wrapper.piano-wrapper {
+    max-width: 99vw;
+    min-width: 120px;
+    min-height: 60px;
+    height: auto;
+    overflow-x: auto;
+  }
+  .white-row,
+  .main-piano .white-row,
+  .main-piano-wrapper .white-row {
+    min-height: 50px;
+  }
+  .note-label {
+    font-size: clamp(10px, 3vw, 13px);
+    bottom: 2px;
+  }
+}
+
+
+
+
+
+/* === Tooltip Styling === */
+.tippy-box[data-theme~='light-border'] {
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  max-width: 340px;
+  min-width: 280px;
+  white-space: normal;
+  padding: 22px 8px 6px 8px;   /* Smaller bottom padding */
+  z-index: 9999;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Floating close button for tippy */
+.tippy-close-btn {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 21px;
+  font-weight: bold;
+  z-index: 1000;
+  line-height: 1;
+  color: #222;
+  opacity: 0.72;
+  transition: opacity 0.2s;
+}
+.tippy-close-btn:hover {
+  opacity: 1;
+  color: #c00;
+}
+
+.tippy-content {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  width: 100% !important;
+  min-height: unset !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.chord-cell, .top-chord-cell {
+  cursor: pointer;
+  color: #1a4fa4;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.chord-cell:hover, .top-chord-cell:hover {
+  color: #0d3c84;
+}
+
+.chord-cell {
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
